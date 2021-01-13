@@ -3,12 +3,17 @@ package pt.pa.refactoring;
 public class Main {
 
     public static void main(String[] args) {
-        MyQueue<Integer> q = new MyQueue<>();
+        QueueWithLimit<Integer> q = new QueueWithLimit<>();
 
         System.out.println("Enqueuing...");
-        for(int i=1; i<=10; i++) {
+        for(int i=1; i<=15; i++) {
             System.out.print(i + " ");
-            q.enqueue(i);
+
+            try {
+                q.enqueue(i);
+            } catch (QueueFullException e) {
+                System.out.println(e.getMessage());
+            }
         }
         System.out.println();
 
